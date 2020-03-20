@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <a href="home.html">Home</a>
-    <a href="adicionar.html">Adicionar Produto</a>
-    <a href="funcionarios.html">Funcionários</a> 
+    
+    <div class="cabecalho">
+        <a href="home.html">Home</a>
+        <a href="adicionar.html">Adicionar Produto</a>
+        <a href="funcionarios.html">Funcionários</a> 
+    </div>
+
     <h1>Estoque</h1>
     <table>
         <tr>
@@ -18,24 +23,29 @@
             <th>Quantidade</th>
         </tr>
         <tr>
-            <td><img src="handsanit.jpg" alt=""></td>
-            <td>Álcool Gel Antisséptico 500ml</td>
-            <td>R$15,00</td>
-            <td>30</td>
+            <td class="foto"><img src="handsanit.jpg" alt="Álcool Gel"></td>
+            <td class="descricao">Álcool Gel Antisséptico 500ml</td>
+            <td class="preco">R$15,00</td>
+            <td class="quantidade">30</td>
         </tr>
         <tr>
-            <td><img src="mascara.jpg" alt=""></td>
-            <td>Máscara Descartável c/ 100 unidades</td>
-            <td>R$50,00</td>
-            <td>50</td>
+            <td class="foto"><img src="mascara.jpg" alt="Máscara Descartável"></td>
+            <td class="descricao">Máscara Descartável c/ 100 unidades</td>
+            <td class="preco">R$50,00</td>
+            <td class="quantidade">50</td>
         </tr>
         <tr>
-            <td><img src="tp.jpg" alt="Papel Higiênico"></td>
-            <td>Rolo de Papel Higiênico Dupla Face</td>
-            <td>R$99,90</td>
-            <td>02</td>
-        </tr>
-        
+            <td class="foto"><img src="tp.jpg" alt="Papel Higiênico"></td>
+            <td class="descricao">Rolo de Papel Higiênico Dupla Face</td>
+            <td class="preco">R$99,90</td>
+            <td class="quantidade">02</td>
+        </tr>  
     </table>
+
+    <div class="rodape">
+        <p>contato@email.com</p>
+        <p>Telefone: (01) 2345-6789</p>
+        <p>Copyright</p>
+    </div>
 </body>
 </html>

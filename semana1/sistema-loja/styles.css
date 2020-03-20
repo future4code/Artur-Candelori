@@ -1,0 +1,66 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: cadetblue;
+    background-color: beige;
+    text-align: center;
+}
+.cabecalho a{
+    color: cadetblue
+    font-weight: normal;
+    padding: 20px;
+}
+p{
+    font-weight: bold;
+}
+ul{
+    border: 1px solid black;
+    background-color: cadetblue;
+    color: beige;
+    padding: 20px;
+    font-weight: bold; 
+    list-style-type: none;     
+}
+li{
+    padding-top: 20px;
+}
+li a{
+    color: beige;
+    font-weight: normal;
+}
+table, th, td{
+    border: 1px solid black;
+    background-color: cadetblue;
+    color: beige;
+    margin-left: auto;
+    margin-right: auto;
+}
+.foto{
+    width: 200px;
+    height: 200px;
+    padding: 0px;
+}
+.descricao, .preco{
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.quantidade{
+    text-align: center;
+    padding: 0px;
+}    
+img{
+    width: 200px;
+    height: 200px;
+}
+input, label{
+    margin: 20px;
+    font-weight: bold;
+}
+button{
+    font-size: 16px;
+    background-color: cadetblue;
+    color: beige;
+}
+.rodape{
+    font-style: italic;
+}
