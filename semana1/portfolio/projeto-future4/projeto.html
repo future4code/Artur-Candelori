@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+
+    <title>Projeto Future4</title>
+    <link rel="stylesheet" href="projeto.css">
+
+  </head>
+  <body>
+
+    <nav>
+      <ul>
+        <li>HOME</li>
+        <li>CURSOS</li>
+        <li>CONTATO</li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Projeto Seletivo Future4</h1>
+
+      <img src="future4.jpg">
+
+      <p>Turma Web Full Stack</p>
+    </main>
+
+    <footer>
+      <form>
+        <input id= "emailCampo" type="email" placeholder="Coloque seu e-mail para contato! :)">
+        <button onclick="validarEmail();">ENVIAR</button>
+      </form>
+    </footer>
+
+    <script>
+    function validarEmail()
+    {
+      var email = document.getElementById("emailCampo");
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(email.value.match(mailformat))
+      {
+        alert("O email " + email.value + " foi enviado");
+        document.getElementById("boasvindas").innerHTML = "Bem vindo " + email.value +"!" ;
+      }
+      else
+      {
+        alert("Email inválido");
+      }
+    }
+    </script>
+
+
+  </body>
+
+</html>

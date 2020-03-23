@@ -1,11 +1,72 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(50, 85, 126);
+    background-color: #FFF;
 }
 
 .menu{
-    text-align: center;
+    border: 1px solid black;
+    background-color: #5995DA;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.menu a{
+    padding-right: 20px;
+    color: #FFF;
+    font-size: 20px;
 }
 
-h1,h2,h3,h4,h5,h6{
+.about{
+    width: 400px;
+    margin: auto;
+}
+.about p, ul, dl{
+    font-size: 20px;
+}
+
+.portfolio{
+    width: 400px;
+    margin: auto;
+}
+.portfolio h1{
     text-align: center;
+    padding-bottom: 20px;
+}
+
+.contato{
+    width: 400px;
+    margin: auto;
+}
+.contato h1{
+    text-align: center;
+    padding-bottom: 20px;
+}    
+.contato label{
+    font-weight: bold;
+    font-size: 18px;
+}
+.contato input{
+    width: 255px;
+}
+.contato button{
+    color: #FFF;
+    background-color: #5995DA;
+    border: 1px solid black;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 6px;
+    display: block;
+    margin: auto;
+}
+
+.rodape{
+    border: 1px solid black;
+    margin-top: 20px;
+    text-align: center;
+    color: #FFF;
+    background-color: #5995DA;
+    font-weight: bold;
+}
+.rodape a{
+    color: #FFF;
 }
