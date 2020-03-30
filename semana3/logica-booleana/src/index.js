@@ -99,6 +99,6 @@ let xic = 450;
 l = xic/3.52;
 console.log("450 xic equivalem a "+l+"l");
 //g.//
-let lb = prompt("Insira um valor em libras:");
+lb = prompt("Insira um valor em libras:");
 kg = lb/2.205;
 console.log(lb+"lb equivalem a "+kg+"kg");
