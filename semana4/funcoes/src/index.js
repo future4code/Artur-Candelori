@@ -15,13 +15,11 @@ somaEproduto
 */
 //Exercício 4//
 //a.//
-/*
 let idadeCanina = (idadeHumana) => {
     return idadeHumana*7;
 }
-*/
+
 //b.// 
-/*
 let informacoes = (nome,idade,endereco,estudante) => {
     const nome = prompt("Qual é o seu nome?");
     let idade = Number(prompt("Quantos anos você tem?"));
@@ -34,18 +32,9 @@ let informacoes = (nome,idade,endereco,estudante) => {
     }
 
     return ("Eu sou "+nome+", tenho "+idade+" anos, moro em "+endereco+" e "+estudante+" estudante.");
-}*/
-//Exercício 5//
-/*
-let seculo = (ano) => {
-    const ano = Number(prompt("Insira o ano:"));
-    const romanos = [""]   
-    
-    
 }
 
-console.log("O ano "+ano+" pertence ao século "+seculo);
-*/
+//Exercício 5//
 
 let ano = Number(prompt("Insira o ano:"));
 
@@ -58,7 +47,7 @@ let qualSeculo = (ano) => {
         anos.push(i);
     }
     
-    const seculos = ["IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","IXX","XX","XXI"];
+    const seculos = ["X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","IXX","XX","XXI"];
     
     if (ano >= anos[anos.length - 1]) {
         
@@ -69,7 +58,7 @@ let qualSeculo = (ano) => {
         for (i=0; i < anos.length; i++) {
         
             if (ano >= anos[i] && ano < anos[i+1]) {
-                seculo = seculos[i+1];
+                seculo = seculos[i];
             } 
         }
     }
@@ -79,3 +68,44 @@ let qualSeculo = (ano) => {
 }
 
 console.log(qualSeculo(ano));
+
+//Exercício 6//
+const array = [10, 23, 45, 78, 90, 52, 35, 67, 84, 22];
+
+//a.//
+function qtosElementos (array) {
+    return array.length;
+}
+console.log(qtosElementos(array));
+
+//b.//
+function parOuNao (x) {
+    if (x % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+//c.//
+let qtosPares = (array) => {
+    qtosPares = 0;
+    for (i = 0; i < 10; i++) {
+        if (array[i] % 2 === 0) {
+            qtosPares++;
+        }
+    }
+    return qtosPares;
+}
+console.log(qtosPares(array));
+
+//d.//
+function parOuNao (x) {
+    if (x % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+for (i=0; i < 10; i++) {
+    console.log(parOuNao(array[i]));
+}    
