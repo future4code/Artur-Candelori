@@ -1,4 +1,13 @@
-p {
-    color: blue;
+.container-dia {
+    height: 60vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-dia ul {
+    font-size: 1.5rem;
+}
+
+.container-formulario {
     text-align: center;
 }

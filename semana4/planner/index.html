@@ -9,18 +9,32 @@
 </head>
 <body>
     
-    <dl>
-        <dt id="segunda">Segunda</dt>
-        <dt id="terca">Terça</dt>
-        <dt id="quarta">Quarta</dt>
-        <dt id="quinta">Quinta</dt>
-        <dt id="sexta">Sexta</dt>
-        <dt id="sabado">Sábado</dt>
-        <dt id="domingo">Domingo</dt>
-    </dl>
+    <h1>Planner Semanal</h1>
 
-    <input type="text" name="" id="">
-    <button>Adicionar</button>
+    <div class="container-dia">
+        <ul id="segunda"><p>Segunda</p></ul>
+        <ul id="terca"><p>Terça</p></ul>
+        <ul id="quarta"><p>Quarta</p></ul>
+        <ul id="quinta"><p>Quinta</p></ul>
+        <ul id="sexta"><p>Sexta</p></ul>
+        <ul id="sabado"><p>Sábado</p></ul>
+        <ul id="domingo"><p>Domingo</p></ul>
+    </div>
+
+    <div class="container-formulario">
+        <label for="dia">Escolha o dia:</label>
+        <select id="dia" name="dia">
+            <option value="segunda">Segunda</option>
+            <option value="terca">Terça</option>
+            <option value="quarta">Quarta</option>
+            <option value="quinta">Quinta</option>
+            <option value="sexta">Sexta</option>
+            <option value="sabado">Sábado</option>
+            <option value="domingo">Domingo</option>
+        </select> 
+        <input type="text" name="item" id="item" placeholder="Insira uma tarefa">
+        <button onclick="adicionarItem()">Adicionar</button>
+    </div>
 
 </body>
 </html>
