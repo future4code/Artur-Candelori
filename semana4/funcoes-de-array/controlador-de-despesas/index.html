@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <h1>Controlador de Despesas</h1>
+
+    <h2>Cadastrar despesa</h2>
+    <label for="valor">Valor</label>
+    <input type="number" name="valor" id="valor">
+    <br><br>
+    <label for="tipo">Tipo</label>
+    <select id="tipo">
+        <option value="alimentacao">Alimentação</option>
+        <option value="transporte">Transporte</option>
+        <option value="lazer">Lazer</option>
+    </select>
+    <br><br>
+    <label for="descricao">Descrição</label>
+    <input type="text" name="descricao" id="descricao">
+    <br><br>
+    <button>Cadastrar Despesa</button>
+
+    <h2>Despesas Detalhadas</h2>
+    <label for="tipo">Tipo</label>
+    <select id="tipo">
+        <option value="alimentacao">Alimentação</option>
+        <option value="transporte">Transporte</option>
+        <option value="lazer">Lazer</option>
+    </select>
+    <br><br>
+    <label for="valor-minimo">Valor Mínimo</label>
+    <input type="number" name="valor-minimo" id="valor-minimo">
+    <br><br>
+    <label for="valor-maximo">Valor Máximo</label>
+    <input type="number" name="valor-maximo" id="valor-maximo">
+    <br><br>
+    <button>Filtrar</button>
+    <button>Limpar Filtros</button>
+
+    <h2>Extrato</h2>
+    <h3>Valor Total:</h3>
+</body>
+</html>
