@@ -195,8 +195,16 @@ function anonimizarPessoa(pessoa) {
 Exercícios de Funções de array
 
 1.
--for(elemento of array){}
+-for(elemento of array){elemento}
 -for(i=0; i < array.length; i++){array[i]}
 -i = 0; while(i < array.length){array[i]; i++};
 
 2.
+a)
+const adultos = array.filter((pessoa, index, array) => {
+    return pessoa.idade >= 20
+})
+b)
+const criancas = array.filter((pessoa, index, array) => {
+    return pessoa.idade < 20
+})
