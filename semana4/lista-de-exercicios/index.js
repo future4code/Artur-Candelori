@@ -108,3 +108,37 @@ function doisNumeros(a,b) {
     console.log(b + divisivel2 + "divisível por " + a)
     console.log("A diferença entre eles é " + diferenca)
 }
+
+Exercícios de Funções
+
+1. function segundo(array) {
+    let maior = -Infinity
+    let menor = Infinity
+
+    for(numero of array) {
+        if (numero > maior) {
+            maior = numero
+        }
+        if (numero < menor) {
+            menor = numero
+        }
+    }
+
+    array.splice(array.indexOf(maior), 1)
+    array.splice(array.indexOf(menor), 1)
+
+    let segundoMaior = -Inifinity
+    let segundoMenor = Infinity
+
+    for(numero of array) {
+        if (numero > segundoMaior) {
+            segundoMaior = numero
+        }
+        if (numero < segundoMenor) {
+            segundoMenor = numero
+        }
+    }
+
+    console.log(segundoMaior)
+    console.log(segundoMenor)
+}
