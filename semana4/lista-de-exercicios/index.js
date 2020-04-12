@@ -179,3 +179,15 @@ console.log("Venha assistir ao filme "+filmeFavorito.titulo+" ,
 de "+filmeFavorito.ano+", dirigido por "+filmeFavorito.diretor+" 
 e estrelado por "+filmeFavorito.elenco)
 
+4.
+const pessoa = {
+    nome: "",
+    idade: "",
+    email: "",
+    endereco: ""
+}
+
+function anonimizarPessoa(pessoa) {
+    const anonimo = pessoa
+    anonimo.nome = "ANÔNIMO"
+}
