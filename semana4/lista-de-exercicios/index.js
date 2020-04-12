@@ -191,3 +191,10 @@ function anonimizarPessoa(pessoa) {
     const anonimo = pessoa
     anonimo.nome = "ANÔNIMO"
 }
+
+Exercícios de Funções de array
+
+1.
+-for(elemento of array){}
+-for(i=0; i < array.length; i++){}
+-i = 0; while(i < array.length){i++};
