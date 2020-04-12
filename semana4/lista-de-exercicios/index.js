@@ -64,3 +64,14 @@ Logo podemos reescrever o código assim:
         console.log(i*2)
         i++
     }
+
+3.
+function tipoTriangulo (a,b,c) {
+    if(a === b && b === c) {
+        console.log("Equilátero")
+    } else if(a !== b && b !== c) {
+        console.log("Escaleno")
+    } else {
+        console.log("Isóceles")
+    }
+}    
