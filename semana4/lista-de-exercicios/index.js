@@ -167,3 +167,15 @@ function criaRetangulo(lado1, lado2) {
         area: lado1 *lado2
     }
 }
+
+3. const filmeFavorito = {
+    titulo: "Stallone Cobra",
+    ano: "1986",
+    diretor: "George P. Cosmatos",
+    elenco: ["Sylvester Stallone","Brigitte Nielsen","Reni Santoni"]
+}
+
+console.log("Venha assistir ao filme "+filmeFavorito.titulo+" , 
+de "+filmeFavorito.ano+", dirigido por "+filmeFavorito.diretor+" 
+e estrelado por "+filmeFavorito.elenco)
+
