@@ -50,3 +50,17 @@ d) !(false && true) || !(true && true) = !false || !true = true || false = true
 e) !true && !true || (!false && true && true) = false || true = true
 
 2.
+O código não funciona, apenas imprime 0 indefinidamente.
+Primeiramente, para evitar um loop infinito, devemos aumentar o valor de i ao fim de cada iteração.
+Ainda assim não temos o resultado desejado.
+Se usarmos, por exemplo, i++ e quantidadeDeNumerosPares=3, teremos 0, 2, 4, 6.
+O número 6 não devia estar ali.
+Para isso, basta mudar o sinal de <= para <.
+Agora temos 0,2,4.
+Logo podemos reescrever o código assim:
+    const quantidadeDeNumerosPares
+    let i = 0
+    while(i < quantidadeDeNumerosPares) {
+        console.log(i*2)
+        i++
+    }
