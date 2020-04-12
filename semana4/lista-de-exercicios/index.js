@@ -266,3 +266,10 @@ let emails = consultas.map((consulta, index, array) => {
     }
         
 })
+
+6.
+contas.forEach((conta, index, array) => {
+    for(compra of conta.compras) {
+        saldoTotal -= compra 
+    }
+})
