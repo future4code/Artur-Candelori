@@ -204,7 +204,28 @@ a)
 const adultos = array.filter((pessoa, index, array) => {
     return pessoa.idade >= 20
 })
+
 b)
 const criancas = array.filter((pessoa, index, array) => {
     return pessoa.idade < 20
 })
+
+3.
+a)
+const novoArray = array.map((numero, index, array) => {
+    return numero*2
+})
+
+b)
+const novoArray = array.map((numero, index, array) => {
+    return String(numero*3)
+})
+
+c)
+const novoArray = array.map((numero, index, array) => {
+    if(numero % 2 === 0){
+        return numero+" é par"
+    } else {
+        return numero+" é ímpar"
+    }
+}) 
