@@ -158,3 +158,12 @@ Objetos são também como variáveis, mas ao invés de apenas um valor possuem a
 Os dois podem ser utilizados, por exemplo, na criação de uma mailing list.
 Cada usuário pode ser registrado como um objeto com nome e endereço de email, e então colocado em um array com os demais usuários cadastrados.
 
+2.
+function criaRetangulo(lado1, lado2) {
+    const retangulo = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 *lado2
+    }
+}
