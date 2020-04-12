@@ -28,3 +28,13 @@ Exercícios de leitura de código
 -Usa .length para determinar a quantidade de elementos de numeros e imprime no console
 -Mostra o número de elementos pares
 -Mostra o número de elementos ímpares
+
+4.
+-for pega cada elemento de numeros e faz duas verificações
+-Se for menor que numero1, numero1 recebe o valor do elemento
+-Se for maior que numero2, numero2 recebe o valor do elemento
+- (25 < Infinity) = true, então numero1 = 25
+- (25 > 0) = true, então numero2 = 25
+-Passando por todos os elementos de numeros, numero1 será o maior valor do array e numero2 o menor
+-Imprime 1590
+-Imprime -10
