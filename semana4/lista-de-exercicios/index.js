@@ -228,4 +228,15 @@ const novoArray = array.map((numero, index, array) => {
     } else {
         return numero+" é ímpar"
     }
-}) 
+})
+
+4.
+a) 
+const pode = pessoas.filter((pessoa, index, array) => {
+    return pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60
+})
+
+b)
+const naoPode = pessoas.filter((pessoa, index, array) => {
+    return pessoa.altura < 1.5 && pessoa.idade <= 14 && pessoa.idade >= 60
+})
