@@ -149,3 +149,12 @@ const alerta = function(x) {
 }
 
 alerta("Future4")
+
+Exercícios de Objetos
+
+1.
+Arrays são como variáveis, mas armazenam mais de um valor e de forma ordenada.
+Objetos são também como variáveis, mas ao invés de apenas um valor possuem atributos com valores independentes, que armazena de forma não ordenada. 
+Os dois podem ser utilizados, por exemplo, na criação de uma mailing list.
+Cada usuário pode ser registrado como um objeto com nome e endereço de email, e então colocado em um array com os demais usuários cadastrados.
+
