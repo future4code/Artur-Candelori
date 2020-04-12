@@ -240,3 +240,29 @@ b)
 const naoPode = pessoas.filter((pessoa, index, array) => {
     return pessoa.altura < 1.5 && pessoa.idade <= 14 && pessoa.idade >= 60
 })
+
+5.
+let emails = consultas.map((consulta, index, array) => {
+
+    if(consulta.cancelada === false && consulta.genero === "masculino"){
+        return `Olá, Sr. ${consulta.nome}. Estamos enviando esta mensagem para 
+        lembrá-lo da sua consulta no dia ${consulta.data}. Por favor, acuse 
+        o recebimento deste e-mail.`
+    }
+    if(consulta.cancelada === false && consulta.genero === "feminino"){
+        return `Olá, Sra. ${consulta.nome}. Estamos enviando esta mensagem para 
+        lembrá-la da sua consulta no dia ${consulta.data}. Por favor, acuse 
+        o recebimento deste e-mail.`
+    }
+    if(consulta.cancelada === true && consulta.genero === "masculino"){
+        return `Olá, Sr. ${consulta.nome}. Infelizmente, sua consulta marcada 
+        para o dia ${consulta.data} foi cancelada. Se quiser, pode entrar em 
+        contato conosco para remarcá-la`
+    }
+    if(consulta.cancelada === true && consulta.genero === "feminino"){
+        return `Olá, Sra. ${consulta.nome}. Infelizmente, sua consulta marcada 
+        para o dia ${consulta.data} foi cancelada. Se quiser, pode entrar em 
+        contato conosco para remarcá-la`
+    }
+        
+})
