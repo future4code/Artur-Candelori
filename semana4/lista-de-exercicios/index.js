@@ -74,4 +74,37 @@ function tipoTriangulo (a,b,c) {
     } else {
         console.log("Isóceles")
     }
-}    
+}
+
+4.
+function doisNumeros(a,b) {
+    const maior;
+    const divisivel1;
+    const divisivel2;
+    const diferenca;
+
+    if(a > b) {
+        maior = a
+    } else {
+        maior = b
+    }
+
+    if(a % b === 0) {
+        divisivel1 = " é "
+    } else {
+        divisivel1 = " não é "
+    }
+
+    if(b % a === 0) {
+        divisivel2 = " é "
+    } else {
+        divisivel2 = " não é "
+    }
+
+    diferenca = maior - menor
+
+    console.log("O maior é: " + maior)
+    console.log(a + divisivel1 + "divisível por " + b)
+    console.log(b + divisivel2 + "divisível por " + a)
+    console.log("A diferença entre eles é " + diferenca)
+}
