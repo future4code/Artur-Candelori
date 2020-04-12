@@ -142,3 +142,10 @@ Exercícios de Funções
     console.log(segundoMaior)
     console.log(segundoMenor)
 }
+
+2.
+const alerta = function(x) {
+    alert("Hello " + x)
+}
+
+alerta("Future4")
