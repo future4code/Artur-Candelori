@@ -20,4 +20,11 @@ Exercícios de leitura de código
 -segundoMontante recebe um tipoDeInvestimento que não é igual a nenhum case, portanto vai para o default
 -Imprime 165
 -Mostra o alerta "TIPO DE INVESTIMENTO INFORMADO INCORRETO!"
-  
+
+3.
+-Decalara uma array com números (numeros) e duas vazias (array1 e array2)
+-Para cada elemento da array numeros, verifica se é par
+-Se sim, o valor vai para array1, se não vai para array2
+-Usa .length para determinar a quantidade de elementos de numeros e imprime no console
+-Mostra o número de elementos pares
+-Mostra o número de elementos ímpares
