@@ -38,3 +38,15 @@ Exercícios de leitura de código
 -Passando por todos os elementos de numeros, numero1 será o maior valor do array e numero2 o menor
 -Imprime 1590
 -Imprime -10
+
+Exercícios de lógica de programação
+
+1. (booleano3 = true, booleano4 = false)
+
+a) true && false && true = false
+b) false || false = false
+c) (false || true) && (false || true) = true && true = true
+d) !(false && true) || !(true && true) = !false || !true = true || false = true
+e) !true && !true || (!false && true && true) = false || true = true
+
+2.
