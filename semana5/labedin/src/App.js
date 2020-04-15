@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
+import CardPequeno from './components/CardPequeno/CardPequeno';
 
 function App() {
   return (
@@ -21,6 +22,18 @@ function App() {
           imagem="https://image.flaticon.com/icons/png/512/117/117472.png" 
           texto="Ver mais"
         />
+
+        <CardPequeno
+          imagem="https://www.traum.com.br/wp-content/uploads/2018/06/email-icon-121-400x400.png"
+          nome="Email:&nbsp;"
+          descricao="email@address.com"
+        />  
+        
+        <CardPequeno
+          imagem="https://image.flaticon.com/icons/svg/1239/1239525.svg"
+          nome="Endereço:&nbsp;"
+          descricao="Rua X, 1234"
+        />  
       </div>
 
       <div className="page-section-container">
