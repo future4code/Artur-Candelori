@@ -17,7 +17,20 @@ class Post extends React.Component {
   }
 
   onClickCurtida = () => {
-    console.log('Curtiu!')
+    const valorAtual = this.state.numeroCurtidas
+    let proximoValor
+  
+    if(this.state.curtido) {
+      proximoValor = valorAtual - 1
+    } else {
+      proximoValor = valorAtual + 1
+    }
+
+    this.setState({
+      curtido: !this.state.curtido,  
+      numeroCurtidas: proximoValor
+    })
+
   }
 
   onClickComentario = () => {
