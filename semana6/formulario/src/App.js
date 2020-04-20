@@ -31,7 +31,7 @@ class App extends React.Component {
 
   irParaProximaEtapa = () => {
     let valorEtapa = this.state.etapa;
-    valorEtapa++;
+    valorEtapa++
     this.setState({etapa: valorEtapa})
   }
 
@@ -39,7 +39,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.renderizaEtapa()}
-        <button onClick={this.irParaProximaEtapa()}>Próxima etapa</button>
+        <button onClick={this.irParaProximaEtapa}>Próxima etapa</button>
       </div>
     );
   }
