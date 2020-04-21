@@ -7,23 +7,19 @@ import Final from './components/Final';
 
 class App extends React.Component {
   state = {
-    etapa: 1 
+    etapa: 1
   };
 
   renderizaEtapa = () => {
     switch(this.state.etapa) {
       case 1:
         return <Etapa1 />;
-        break;
       case 2:
         return <Etapa2 />;
-        break;
       case 3:
         return <Etapa3 />;
-        break;
       case 4:
         return <Final />;
-        break;
       default:
         return <div></div>;        
     }
@@ -31,15 +27,15 @@ class App extends React.Component {
 
   irParaProximaEtapa = () => {
     let valorEtapa = this.state.etapa;
-    valorEtapa++
-    this.setState({etapa: valorEtapa})
+    valorEtapa++;
+    this.setState({etapa: valorEtapa});
   }
 
   render() {
     return (
       <div className="App">
         {this.renderizaEtapa()}
-        <button onClick={this.irParaProximaEtapa}>Próxima etapa</button>
+        {this.state.etapa !== 4 ? <button onClick={this.irParaProximaEtapa}>Próxima etapa</button> : <div></div>} 
       </div>
     );
   }
