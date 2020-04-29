@@ -1,17 +1,35 @@
 import React from 'react';
-
+import axios from 'axios'
 import {Cadastro} from './components/TelaCadastro';
 import {Lista} from './components/TelaLista';
 
-function App() {
-  return (
+class App extends React.Component {
+  state = {
+    telaAtual: 'cadastro'
+  }
+
+  onClickMudaPagina = () => {
+    let proximaPagina = ''
+    if(this.state.paginaAtual === 'cadastro') {
+      proximaPagina = 'lista'
+    } else {
+      proximaPagina = 'cadastro'
+    }
+
+    this.setState({paginaAtual: proximaPagina})
+  }
+
+  render() {
+    return (
     <div>
-      <button>Mudar</button>
+      <button onClick={this.onClickMudaPagina}>Mudar</button>
       <br/><br/>
-      <Cadastro />
-      <Lista />
+      {this.state.telaAtual === 'cadastro' ?
+      <Cadastro /> :
+      <Lista />}
     </div>
-  );
+    );
+  }
 }
 
 export default App;
