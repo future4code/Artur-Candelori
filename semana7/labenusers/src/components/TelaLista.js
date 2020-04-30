@@ -6,47 +6,45 @@ export class Lista extends React.Component {
       listaUsuarios: [], 
     }
 
-    getAllUsers = () => {
-        axios
-          .get(
-            "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-            {
-              headers: {
-                Authorization: "artur-candelori-julian"
-              }
-            }
-        )
-        .then(resposta => {
-            this.setState({listaUsuarios: resposta.data})
-        })
-        .catch(error => {
-            console.log(error.response);
-        });
-    };
+    componentDidMount() {
+        this.getAllUsers()
+    }
 
-    /* deleteUser = (id) => {
-        axios.delete('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/:id',
-        {
+    getAllUsers = () => {
+        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users', {
             headers: {
                 Authorization: "artur-candelori-julian"
             }
-            path : id
-        }).then(resposta => {
-
+        }).then((response) => {
+            this.setState({listaUsuarios: response.data})
+        }).catch((error) => {
+            console.log(error)
         })
-    } */
+    }
+
+    onClickDeleteUser = (userId) => {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`, {
+            headers: {
+                Authorization: "artur-candelori-julian"
+            }
+        }).then((response) => {
+            window.alert('Usuário deletado')
+            this.getAllUsers()
+        }).catch((error) => {
+            window.alert('Erro!')
+        })
+    }
 
     
 
     /* onClickRemoveUsuario() {
     } */
     render(){
-        this.getAllUsers()
         return (
             <div>
                 <h2>Usuários Cadastrados:</h2>
                 {this.state.listaUsuarios.map((user) => {
-                   return <p>{user.name} <button>X</button></p>
+                   return <p>{user.name} <button onClick={() => this.onClickDeleteUser(user.id)}>X</button></p>
                 })}    
             </div>
         );

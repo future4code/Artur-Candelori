@@ -5,7 +5,7 @@ import {Lista} from './components/TelaLista';
 
 class App extends React.Component {
   state = {
-    telaAtual: 'cadastro'
+    paginaAtual: 'cadastro'
   }
 
   onClickMudaPagina = () => {
@@ -22,11 +22,11 @@ class App extends React.Component {
   render() {
     return (
     <div>
-      <button onClick={this.onClickMudaPagina}>Mudar</button>
+      <button onClick={this.onClickMudaPagina}>
+        {this.state.paginaAtual === 'cadastro' ? 'Ir para a lista de usuários' : 'Ir para a página de cadastro'}
+      </button>
       <br/><br/>
-      {this.state.telaAtual === 'cadastro' ?
-      <Cadastro /> :
-      <Lista />}
+      {this.state.paginaAtual === 'cadastro' ? <Cadastro /> : <Lista />}
     </div>
     );
   }
