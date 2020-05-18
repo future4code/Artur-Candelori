@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+
+import PeopleAlt from "@material-ui/icons/PeopleAlt";
 
 import { AppBar } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
@@ -13,19 +14,20 @@ const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     height: 10%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid lightgray;
 `
 const Title = styled.div`
     display: flex;
+    text-align: center;
 `
 function Header(props) {
     return (
         <Container>
-            {props.CurrentPage === 'profile' ? <div></div> : <Button onClick={props.OnClickMudar}>Mudar</Button>}
+            {props.CurrentPage === 'profile' ? <div></div> : <IconButton onClick={props.OnClickMudar} color="primary"><PeopleAlt/></IconButton>}
             <Title>
                 <Typography variant="h5" color="primary">Astro</Typography><Typography variant="h5" color="secondary">Match</Typography>
             </Title>
-            {props.CurrentPage === 'profile' ? <Button onClick={props.OnClickMudar}>Mudar</Button> : <div></div>}
+            {props.CurrentPage === 'profile' ? <IconButton onClick={props.OnClickMudar} color="secondary"><PeopleAlt/></IconButton> : <div></div>}
         </Container>
     )
 }

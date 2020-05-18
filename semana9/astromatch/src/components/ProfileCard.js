@@ -9,21 +9,25 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-const Container = styled.div`
+const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     height: 90%;
 `
 const Perfil = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    height: 90%;    
+    height: 80%;
+    width: 300px;
+    border: 1px solid lightgray;    
 `
 const Foto = styled.img`
     height: 300px;
-    width: 200px;
+    width: 300px;
 `
 const Botoes = styled.div`
     display: flex;
@@ -75,7 +79,7 @@ const ProfileCard = (props) => {
     const profile = props.Profile
 
     return (
-        <Container>
+        <CardContainer>
             <Perfil>
                 <Foto src={profile.photo}/>
                 <Typography variant="h6">{profile.name}, {profile.age}</Typography>
@@ -93,7 +97,7 @@ const ProfileCard = (props) => {
                     <FavoriteIcon/>
                 </IconButton>
             </Botoes>
-        </Container>
+        </CardContainer>
     )
 }
 
