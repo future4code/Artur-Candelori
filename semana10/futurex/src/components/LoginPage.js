@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
-import { useInputValue } from '../hooks/useInputValue';
+import { useForm } from '../hooks/useForm';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -23,13 +23,18 @@ const Main = styled.div`
 function LoginPage() {
   const history = useHistory()
 
-  const [email, onChangeEmail] = useInputValue()
-  const [password, onChangePassword] = useInputValue()
+  const { form, onChange } = useForm({ email: "", password: "" })
+
+  const handleInputChange = event => {
+    const {name, value} = event.target;
+
+    onChange(name, value);
+  }
 
   const handleLogin = async () => {
     const body = {
-      "email": email,
-      "password": password
+      "email": form.email,
+      "password": form.password
     }
     
     try {
@@ -38,20 +43,33 @@ function LoginPage() {
       localStorage.setItem("token", response.data.token)
       history.push("/trips/list")
     } catch (error) {
+      console.log(body)
       console.log(error)
       alert("Erro!")
     }
   }
 
-  
-
   return (
     <Container>
       LoginPage
       <Main>
-        <input placeholder="email" value={email} onChange={onChangeEmail}></input>
-        <input placeholder="password" value={password} onChange={onChangePassword}></input>
-        <button onClick={handleLogin}>Login</button>
+        <form>
+          <input
+            name="email" 
+            value={form.email} 
+            type="text" 
+            placeholder="E-mail"
+            onChange={handleInputChange}
+          />
+          <input 
+            name="password"
+            value={form.password} 
+            type="password" 
+            placeholder="Senha" 
+            onChange={handleInputChange}
+          />
+          <button onClick={handleLogin}>Login</button>
+        </form>
       </Main>
     </Container>
   );
