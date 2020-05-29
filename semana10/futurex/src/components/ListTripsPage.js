@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { useProtectedPage } from '../hooks/useProtectedPage'
+import { useHistory, } from 'react-router-dom';
+import { useProtectedPage } from '../hooks/useProtectedPage';
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +18,7 @@ const Main = styled.div`
   border: 1px solid black;
   width: 600px;
   height: 600px;
+  background-color: white;
 `
  
 function ListTripsPage() {
@@ -27,8 +28,11 @@ function ListTripsPage() {
 
   const history = useHistory();
 
-  const goToTripDetailsPage = () => {
-    history.push(`/trips/details`)
+  const goToTripDetailsPage = (id)  => {
+    history.push(`/trips/details/${id}`)
+  }
+  const goToCreateListPage = () => {
+    history.push(`/trips/create`)
   }
   
   useEffect(() => {
@@ -42,14 +46,15 @@ function ListTripsPage() {
 
   return (
     <Container>
-      ListTripsPage
+      <button onClick={goToCreateListPage}>CreateTripPage</button>
       <Main>
+        ListTripsPage
         {trips.map(trip =>{
           return (
             <div>
               <h4>{trip.name}</h4>
               <p>{trip.planet}, {trip.date}</p>
-              <button onClick={goToTripDetailsPage}>Detalhes</button>
+              <button onClick={() => goToTripDetailsPage(trip.id)}>Detalhes</button>
             </div>
           )
         })}

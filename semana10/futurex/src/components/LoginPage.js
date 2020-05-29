@@ -18,12 +18,16 @@ const Main = styled.div`
   border: 1px solid black;
   width: 600px;
   height: 600px;
+  background-color: white;
 `
 
 function LoginPage() {
   const history = useHistory()
 
-  const { form, onChange } = useForm({ email: "", password: "" })
+  const {form, onChange} = useForm({
+    email: "", 
+    password: "" 
+  })
 
   const handleInputChange = event => {
     const {name, value} = event.target;
@@ -31,11 +35,10 @@ function LoginPage() {
     onChange(name, value);
   }
 
-  const handleLogin = async () => {
-    const body = {
-      "email": form.email,
-      "password": form.password
-    }
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    
+    const body = form
     
     try {
       const response = await axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/artur-candelori-julian/login`, body)
@@ -43,7 +46,6 @@ function LoginPage() {
       localStorage.setItem("token", response.data.token)
       history.push("/trips/list")
     } catch (error) {
-      console.log(body)
       console.log(error)
       alert("Erro!")
     }
@@ -51,15 +53,16 @@ function LoginPage() {
 
   return (
     <Container>
-      LoginPage
       <Main>
+        LoginPage
         <form>
           <input
             name="email" 
             value={form.email} 
-            type="text" 
+            type="email" 
             placeholder="E-mail"
             onChange={handleInputChange}
+            required
           />
           <input 
             name="password"
@@ -67,6 +70,7 @@ function LoginPage() {
             type="password" 
             placeholder="Senha" 
             onChange={handleInputChange}
+            required
           />
           <button onClick={handleLogin}>Login</button>
         </form>

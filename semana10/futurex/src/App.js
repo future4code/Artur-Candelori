@@ -1,14 +1,19 @@
 import React from 'react';
-
 import Router from './components/Router'
 import Header from './components/Header'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  background-color: #ff5f00;
+`
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header/>
       <Router/>
-    </div>
+      <button >Home</button>
+    </Container>
   );
 }
 

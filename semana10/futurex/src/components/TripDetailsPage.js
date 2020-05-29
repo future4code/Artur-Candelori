@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useProtectedPage } from '../hooks/useProtectedPage'
+import { useProtectedPage } from '../hooks/useProtectedPage';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -17,47 +18,86 @@ const Main = styled.div`
   border: 1px solid black;
   width: 600px;
   height: 600px;
+  background-color: white;
 `
 
 function TripDetailsPage() {
   useProtectedPage()
 
-  const [trip, setTrip] = useState({
-    "id": "NoIFVcOiSgTKTIPVZwXS",
-    "planet": "Mercúrio",
-    "durationInDays": 7,
-    "date": "31/12/2019",
-    "name": "Ano novo em Mercúrio",
-    "description": "Venha passar a virada pertinho do Sol!",
-    "candidates": [
-      {
-        "id": "NAOp5L3Wuunexq9SbUso",
-        "applicationText": "Quero muuuuuuito ir!!!",
-        "profession": "Chefe",
-        "age": 20,
-        "name": "Astrodev",
-        "country": "Brasil"
-      }
-    ]
-  })
+  const pathParams = useParams()
 
-  const getTrip = (id) => {
-    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/artur-candelori-julian/trip/${id}`).then(response => {
-      console.log(response)
-    })
-    .catch(error => {
+  const [trip, setTrip] = useState({})
+  const [candidates, setCandidates] = useState([])
+
+  const approvedCandidates = trip.approved
+
+  const getTripDetail = async (tripId) => {
+    const token = localStorage.getItem('token')
+
+    try {
+      const response = await axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/artur-candelori-julian/trip/${tripId}`, {
+        headers: {
+          auth: token
+        }
+      })
+      setTrip(response.data.trip)
+      setCandidates(response.data.trip.candidates)
+    } catch (error) {
       console.log(error)
-    })
+    }
   }
+
+  const decideCandidate = async (tripId, candidateId, approve) => {
+    const token = localStorage.getItem('token')
+
+    const body = {
+      "approve": approve
+    }
+
+    try {
+      const response = await axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/artur-candelori-julian/trips/${tripId}/candidates/${candidateId}/decide`, body, {
+        headers: {
+          'Content-Type': 'application/json',
+          auth: token
+        }
+      })
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }  
+
+  useEffect(() => {
+    getTripDetail(pathParams.id)
+  }, [])
 
   return (
     <Container>
-      TripDetailsPage
       <Main>
-
+        TripDetailsPage
+        <p>{trip.name}</p>
+        <p>{trip.date}</p>
+        <p>{trip.planet}</p>
+        <p>{trip.description}</p>
+        {candidates.map(candidate => {
+          return(
+            <div>
+              <ul>
+                <li>{candidate.name}</li>
+                <li>{candidate.age}</li>
+                <li>{candidate.country}</li>
+                <li>{candidate.profession}</li>
+                <li>{candidate.applicationText}</li>
+              </ul>
+              <button onClick={() => decideCandidate(trip.id, candidate.id, true)}>Aprovar</button>
+              <button onClick={() => decideCandidate(trip.id, candidate.id, false)}>Reprovar</button>
+            </div>
+          )
+        })}
+        {approvedCandidates.map(candidate => <p>{candidate.name}</p>)}
       </Main>
     </Container>
   );
 }
 
-export default TripDetailsPage;
+export default TripDetailsPage

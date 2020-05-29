@@ -5,7 +5,7 @@ import HomePage from './HomePage';
 import CreateTripPage from './CreateTripPage';
 import ListTripsPage from './ListTripsPage';
 import TripDetailsPage from './TripDetailsPage';
-import ApplicationForm from './ApplicationForm';
+import ApplicationFormPage from './ApplicationFormPage';
 
 function Router() {
   return (
@@ -15,18 +15,18 @@ function Router() {
                 <HomePage/>
             </Route>
             <Route exact path="/application-form">
-                <ApplicationForm/>
+                <ApplicationFormPage/>
             </Route>
             <Route exact path="/login">
                 <LoginPage/>
             </Route>
-            <Route exact path="/trips/create">
-                <CreateTripPage/>
-            </Route>
             <Route exact path="/trips/list">
                 <ListTripsPage/>
             </Route>
-            <Route exact path="/trips/details">
+            <Route exact path="/trips/create">
+                <CreateTripPage/>
+            </Route>
+            <Route exact path="/trips/details/:id">
                 <TripDetailsPage/>
             </Route>
         </Switch>
