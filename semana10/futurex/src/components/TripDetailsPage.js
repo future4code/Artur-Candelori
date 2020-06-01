@@ -29,8 +29,6 @@ function TripDetailsPage() {
   const [trip, setTrip] = useState({})
   const [candidates, setCandidates] = useState([])
 
-  const approvedCandidates = trip.approved
-
   const getTripDetail = async (tripId) => {
     const token = localStorage.getItem('token')
 
@@ -94,7 +92,8 @@ function TripDetailsPage() {
             </div>
           )
         })}
-        {approvedCandidates.map(candidate => <p>{candidate.name}</p>)}
+        {/* {approved.map(candidate => <p>{candidate.name}</p>)} */}
+        <button onClick={() => console.log(trip.approved)}>Aprovados</button>
       </Main>
     </Container>
   );
