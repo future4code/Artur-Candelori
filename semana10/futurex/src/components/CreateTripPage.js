@@ -16,9 +16,13 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  width: 600px;
-  height: 600px;
+  width: 80%;
+  height: 90%;
   background-color: white;
+`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
 `
 
 function CreateTripPage() {
@@ -56,7 +60,8 @@ function CreateTripPage() {
     })
   }
 
-  const onClickEnviar = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     createTrip()
     resetForm()
   }
@@ -65,7 +70,7 @@ function CreateTripPage() {
     <Container>
       <Main>
         CreateTripPage
-        <form>
+        <Form>
           <input 
             name="name" 
             placeholder="name" 
@@ -103,9 +108,8 @@ function CreateTripPage() {
             value={form.durationInDays} 
             onChange={handleInputChange}
           />
-          <button onClick={onClickEnviar}>Enviar</button>
-        </form>
-        
+          <button onClick={handleSubmit}>Enviar</button>
+        </Form>
       </Main>
     </Container>
   );

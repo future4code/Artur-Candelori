@@ -16,9 +16,13 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  width: 600px;
-  height: 600px;
+  width: 80%;
+  height: 90%;
   background-color: white;
+`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
 `
 
 function ApplicationFormPage() {
@@ -65,7 +69,8 @@ function ApplicationFormPage() {
     })
   }
 
-  const onClickEnviar = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     applyToTrip(form.tripId)
     resetForm()
   }
@@ -74,42 +79,44 @@ function ApplicationFormPage() {
     <Container>
       <Main>
         ApplicationForm
-        <input 
-          name="name" 
-          placeholder="Nome" 
-          type ="text" 
-          value={form.name} 
-          onChange={handleInputChange}
-        />
-        <input 
-          name="age"
-          placeholder="Idade" 
-          type="number" 
-          value={form.age} 
-          onChange={handleInputChange}
-        />
-        <textarea 
-          name="applicationText" 
-          placeholder='"Por que sou um bom candidato?"' 
-          value={form.applicationText} 
-          onChange={handleInputChange}
-        />
-        <input
-          name="profession" 
-          placeholder="Profissão" 
-          value={form.profession} 
-          onChange={handleInputChange}
-        />
-        <CountryDropdown 
-          Value={form.country} 
-          OnChange={handleInputChange} 
-        />
-        <select 
-          value={form.tripId} 
-          onChange={handleInputChange}>
-          {trips.map(trip => <option value={trip.id}>{trip.name}</option>)}
-        </select>
-        <button onClick={onClickEnviar}>Enviar</button>
+        <Form>
+          <input 
+            name="name" 
+            placeholder="Nome" 
+            type ="text" 
+            value={form.name} 
+            onChange={handleInputChange}
+          />
+          <input 
+            name="age"
+            placeholder="Idade" 
+            type="number" 
+            value={form.age} 
+            onChange={handleInputChange}
+          />
+          <textarea 
+            name="applicationText" 
+            placeholder='"Por que sou um bom candidato?"' 
+            value={form.applicationText} 
+            onChange={handleInputChange}
+          />
+          <input
+            name="profession" 
+            placeholder="Profissão" 
+            value={form.profession} 
+            onChange={handleInputChange}
+          />
+          <CountryDropdown 
+            Value={form.country} 
+            OnChange={handleInputChange} 
+          />
+          <select 
+            value={form.tripId} 
+            onChange={handleInputChange}>
+            {trips.map(trip => <option value={trip.id}>{trip.name}</option>)}
+          </select>
+          <button onClick={handleSubmit}>Enviar</button>
+        </Form>
       </Main>
     </Container>
   );

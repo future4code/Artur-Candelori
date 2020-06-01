@@ -16,8 +16,8 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  width: 600px;
-  height: 600px;
+  width: 80%;
+  height: 90%;
   background-color: white;
 `
 

@@ -14,8 +14,8 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  width: 600px;
-  height: 600px;
+  width: 80%;
+  height: 90%;
   background-color: white;
 `
 
@@ -31,8 +31,8 @@ function HomePage() {
 
   return (
     <Container>
-      HomePage
       <Main>
+        HomePage
         <button  onClick={goToLoginPage}>Login</button>
         <button onClick={goToApplicationForm}>ApplicationPage</button>
       </Main>
