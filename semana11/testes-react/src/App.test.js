@@ -148,3 +148,29 @@ describe("Quantidade de posts", () => {
         expect(getByText('Quantidade de posts: 5')).toBeInTheDocument()
     })
 })
+
+describe("Mensagem de input vazio", () => {
+    test("quando o usuário aperta o botão Adicionar com o input vazio, aparece a mensagem Digite algo", () => {
+        const {getByPlaceholderText, getByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: ''}})
+        fireEvent.click(buttonAdd)
+        
+        expect(getByText('Digite algo')).toBeInTheDocument()
+    })
+
+    test("quando o usuário aperta o botão Adicionar com o input vazio, o post não aparece", () => {
+        const {getByPlaceholderText, getByText, queryByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: ''}})
+        fireEvent.click(buttonAdd)
+
+        expect(queryByText('Quantidade de posts: 1')).toBeNull()
+    })
+})

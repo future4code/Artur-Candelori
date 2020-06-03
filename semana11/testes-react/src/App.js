@@ -5,6 +5,7 @@ import { Post } from "./components/Post";
 const App = () => {
   const [postsList, setPostsList] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false)
 
   const onChangeInput = event => {
     setInputValue(event.target.value);
@@ -12,7 +13,10 @@ const App = () => {
 
   const addPost = () => {
     // Adiciona um post à lista
-    const newPost = {
+    if (inputValue === "") {
+      setErrorMessage(true)
+    } else {
+      const newPost = {
       id: Date.now(),
       text: inputValue,
       liked: false
@@ -23,6 +27,7 @@ const App = () => {
     setPostsList(newPostsList);
 
     setInputValue('')
+    }
   };
 
   const deletePost = postId => {
@@ -64,7 +69,9 @@ const App = () => {
       </div>
       <br />
       {postsList.length === 0 ? <p>Nenhum post</p> : <p>Quantidade de posts: {postsList.length}</p>}
-      {postsList.map(post => {
+      {errorMessage ? 
+      <p>Digite algo</p> :
+      postsList.map(post => {
         return (
           <Post
             key={post.id}
