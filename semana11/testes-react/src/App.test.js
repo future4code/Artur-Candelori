@@ -8,11 +8,11 @@ describe("Criar um post", () => {
         const {getByPlaceholderText, getByText} = render(<App/>)
 
         const input = getByPlaceholderText('Novo post')
-        const button = getByText(/Adicionar/)
+        const buttonAdd = getByText(/Adicionar/)
 
         fireEvent.change(input, {target: {value: 'tarefa teste'}})
 
-        fireEvent.click(button)
+        fireEvent.click(buttonAdd)
 
         expect(getByText(/tarefa teste/))
     })
@@ -75,6 +75,76 @@ describe("Apagar um post", () => {
 
         fireEvent.click(buttonDelete)
 
-        expect(queryByText('tarefa teste')).toBeNull
+        expect(queryByText('tarefa teste')).toBeNull()
+    })
+})
+
+describe("Limpa os inputs", () => {
+    test("quando o usuário clica em Adicionar, os inputs são limpos", () => {
+        const {getByPlaceholderText, getByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+
+        fireEvent.click(buttonAdd)
+
+        expect(input).toHaveValue('')
+    })
+})
+
+describe("Mensagem 'Nenhum post'", () => {
+    test("quando não há posts, aparece a mensagem Nenhum post", () => {
+        const {getByText} = render(<App/>)
+
+        expect(getByText('Nenhum post')).toBeInTheDocument()
+    })
+
+    test("quando há pelo menos um post, a mensagem some", () => {
+        const {getByPlaceholderText, getByText, queryByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+
+        fireEvent.click(buttonAdd)
+
+        expect(queryByText('Nenhum post')).toBeNull()
+    })
+})
+
+describe("Quantidade de posts", () => {
+    test("quando há um post, aparece a mensagem Quantidade de posts: 1", () => {
+        const {getByPlaceholderText, getByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        
+        expect(getByText('Quantidade de posts: 1')).toBeInTheDocument()
+    })
+    
+    test("quando 5 posts, aparece a mensagem Quantidade de posts: 5", () => {
+        const {getByPlaceholderText, getByText} = render(<App/>)
+
+        const input = getByPlaceholderText('Novo post')
+        const buttonAdd = getByText(/Adicionar/)
+
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        fireEvent.change(input, {target: {value: 'tarefa teste'}})
+        fireEvent.click(buttonAdd)
+        
+        expect(getByText('Quantidade de posts: 5')).toBeInTheDocument()
     })
 })

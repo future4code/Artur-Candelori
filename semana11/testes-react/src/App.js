@@ -21,6 +21,8 @@ const App = () => {
     const newPostsList = [newPost, ...postsList];
 
     setPostsList(newPostsList);
+
+    setInputValue('')
   };
 
   const deletePost = postId => {
@@ -61,6 +63,7 @@ const App = () => {
         <button onClick={addPost}>Adicionar</button>
       </div>
       <br />
+      {postsList.length === 0 ? <p>Nenhum post</p> : <p>Quantidade de posts: {postsList.length}</p>}
       {postsList.map(post => {
         return (
           <Post
