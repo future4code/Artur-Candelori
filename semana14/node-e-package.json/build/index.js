@@ -1,23 +1,26 @@
 "use strict";
-const operacao = process.argv[2];
-const num1 = Number(process.argv[3]);
-const num2 = Number(process.argv[4]);
-let conta = 0;
-switch (operacao) {
-    case 'add':
-        conta = num1 + num2;
-        break;
-    case 'sub':
-        conta = num1 - num2;
-        break;
-    case 'mult':
-        conta = num1 * num2;
-        break;
-    case 'div':
-        conta = num1 / num2;
-        break;
-    default:
-        console.log("Operação inválida");
-}
-console.log(`A resposta é: ${conta}`);
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs = __importStar(require("fs"));
+const arquivo = process.argv[2];
+const tarefa = process.argv[3];
+fs.appendFileSync(arquivo, tarefa);
 //# sourceMappingURL=index.js.map
