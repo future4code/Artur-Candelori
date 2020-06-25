@@ -1,5 +1,7 @@
 import * as moment from 'moment'
 
+moment.locale("pt-br")
+
 //Ex1
 //a)
 type evento = {
@@ -26,13 +28,52 @@ const agenda: evento[] = [
 
 //Ex2
 //a)
+// function infoEvento(eventos: evento[]): void {
+//     eventos.forEach(evento => {
+//         console.log("Nome: ", evento.nome)
+//         console.log("Horário de início: ", evento.inicio.format("DD/MM/YYYY [às] HH:mm"))
+//         console.log("Horário de fim: ", evento.fim.format("DD/MM/YYYY [às] HH:mm"))
+//         console.log("Descrição: ", evento.descricao)
+//     })
+// }
+//b)
+//const dataLondres = data.add(3, "hours")
+
+//Ex3
 function infoEvento(eventos: evento[]): void {
-    eventos.forEach(function(entry) {
-        console.log("Nome: ", entry.nome)
-        console.log("Horário de início: ", entry.inicio)
-        console.log("Horário de fim: ", entry.fim)
-        console.log("Descrição: ", entry.descricao)
+    eventos.forEach(evento => {
+        const duracao = evento.fim.diff(evento.inicio, "minutes")
+
+        const diasAteEvento = evento.inicio.diff(moment(), "days")
+
+        console.log("Nome: ", evento.nome)
+        console.log("Horário de início: ", evento.inicio.format("DD/MM/YYYY [às] HH:mm"))
+        console.log("Horário de fim: ", evento.fim.format("DD/MM/YYYY [às] HH:mm"))
+        console.log("Descrição: ", evento.descricao)
+        console.log("Duração: ", duracao)
+        console.log("Dias até o evento: ", diasAteEvento)
     })
 }
 
-console.log(infoEvento(agenda))
+//Ex4
+function criarEvento(
+    nome: string,
+    descricao: string,
+    inicio: moment.Moment,
+    fim: moment.Moment
+): void {
+    if (nome === undefined || descricao === undefined || inicio === undefined || fim === undefined) {
+        console.log("Dados inválidos")
+        return
+    }
+
+    const tempoRestanteInicio = inicio.diff(moment(), "seconds")
+    const duracao = fim.diff(inicio, "seconds")
+    
+    if (tempoRestanteInicio < 0 || duracao < 0) {
+        console.log("Data inválida")
+        return
+    }
+
+    agenda.push({nome, descricao, inicio, fim})
+}
