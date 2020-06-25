@@ -6,6 +6,12 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "ex1": "ts-node ./src/exercicio1.ts",
+    "ex2": "ts-node ./src/exercicio2.ts",
+    "ex3": "ts-node ./src/exercicio3.ts",
+    "ex4": "ts-node ./src/exercicio4.ts",
+    "ex5": "ts-node ./src/exercicio5.ts",
+    "ex6": "ts-node ./src/exercicio6.ts",
+    "ex7": "ts-node ./src/exercicio7.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Artur Candelori",
