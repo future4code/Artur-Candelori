@@ -12,77 +12,66 @@ type transaction = {
 type account = {
     name: string,
     cpf: number,
-    birthDate: number,
+    birthDate: moment.Moment,
     balance: number,
     statement: transaction[]
 }
-                                                
-// function createAccount(
-//     name: string, 
-//     cpf: number, 
-//     birthDate: string
-// ) : void {
 
-//     const date: moment.Moment = moment(birthDate, "DD/MM/YYYY")
-//     const diff: number = moment().diff(date, "years")
+function createAccount(name: string, cpf: number, birthDate: moment.Moment): void {
 
-//     if (diff > 18) {
-        
-//         fs.writeFileSync('tarefas.json',)
+    const diff: number = moment().diff(birthDate, "years")
+    
+    if (diff > 18) {
 
-//         allAccounts.push({
-//         name: name,
-//         cpf: Number(cpf),
-//         birthDate: date.unix(),
-//         balance: 0,
-//         statement: []
-//         })
+        const fileName: string = 'accounts.json'
+        const fileBuffer: Buffer = fs.readFileSync(fileName)
+        const fileText: string = fileBuffer.toString()
+        const accounts: account[] = JSON.parse(fileText)
 
-//     } else {
-//         console.log("Necessário ter ao menos 18 para criar uma conta")
-//     }
-// }
+        const newAccount: account = {
+            name: name,
+            cpf: cpf,
+            birthDate: birthDate,
+            balance: 0,
+            statement: []
+        }
 
-// function getAllAcounts() : account[] {
+        accounts.push(newAccount)
 
-// }
-//fs.writeFileSync('accounts.json', "Teste")
+        const updatedAccounts: string = JSON.stringify(accounts)
 
-function createAccount(account: account): void{
+        fs.writeFileSync(fileName, updatedAccounts)
 
-    // const filePath: string = 'tarefas.json'
-    // const fileBuffer: Buffer = fs.readFileSync(filePath) || []
-    // const fileText: string = fileBuffer.toString()
-    // const accounts: string[] = JSON.parse(fileText)    
-
-    // tarefas.push(tarefa)
-
-    // const tarefasAtualizadas: string = JSON.stringify(tarefas)
-
-    // fs.writeFileSync(caminhoDoArquivo, tarefasAtualizadas)
-
-    // console.log("Sucesso!")
-    console.log(account)
+    } else {
+        console.log("Data de nascimento inválida")
+    }
 }
 
-const account: string = process.argv[2]
+const name = process.argv[2]
+const cpf = Number(process.argv[3])
+const birthDate = moment(process.argv[4], "DD/MM/YYYY")
 
-createAccount(account)
+createAccount(name, cpf, birthDate)
 
-const data: any = fs.readFileSync('accounts.json')
-const fileText: string = data.toString()
-const accounts: any = JSON.parse(fileText)
+function getAllAccounts(): any {
+    const fileName: string = 'accounts.json'
+    const fileBuffer: Buffer = fs.readFileSync(fileName)
+    const fileText: string = fileBuffer.toString()
+    const accounts: account[] = JSON.parse(fileText)
 
-const accountList: any = accounts.map(
-    (account: any) => {
-        return {
-            name: account.name,
-            cpf: account.cpf,
-            birthDate: account.birthDate,
-            balance: account.balance,
-            statement: account.statement
+    const accountList: any = accounts.map(
+        (account: any) => {
+            return {
+                name: account.name,
+                cpf: account.cpf,
+                birthDate: account.birthDate,
+                balance: account.balance,
+                statement: account.statement
+            }
         }
-    }
-)
+    )
 
-console.log(fileText)
+    return accountList
+}
+
+console.log(getAllAccounts())
