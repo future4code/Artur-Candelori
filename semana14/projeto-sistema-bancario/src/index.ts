@@ -47,11 +47,11 @@ function createAccount(name: string, cpf: number, birthDate: moment.Moment): voi
     }
 }
 
-const name = process.argv[2]
-const cpf = Number(process.argv[3])
-const birthDate = moment(process.argv[4], "DD/MM/YYYY")
+// const name = process.argv[2]
+// const cpf = Number(process.argv[3])
+// const birthDate = moment(process.argv[4], "DD/MM/YYYY")
 
-createAccount(name, cpf, birthDate)
+// createAccount(name, cpf, birthDate)
 
 function getAllAccounts(): any {
     const fileName: string = 'accounts.json'
@@ -75,3 +75,19 @@ function getAllAccounts(): any {
 }
 
 console.log(getAllAccounts())
+
+function getAccountBalance(name: string, cpf: number): void {
+
+    const accounts = getAllAccounts()
+
+    const accountBalance = accounts.filter((acc: any) => {
+        if(acc.name === name || acc.cpf === cpf) {
+            console.log(acc.balance)
+        }
+    })
+}
+
+// const name = process.argv[2]
+// const cpf = Number(process.argv[3])
+
+// console.log(getAccountBalance(name, cpf))
