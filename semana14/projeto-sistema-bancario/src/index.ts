@@ -22,7 +22,7 @@ function createAccount(name: string, cpf: number, birthDate: moment.Moment): voi
     const diff: number = moment().diff(birthDate, "years")
     
     if (diff > 18) {
-
+//substituir por const accounts = getAllAccounts()
         const fileName: string = 'accounts.json'
         const fileBuffer: Buffer = fs.readFileSync(fileName)
         const fileText: string = fileBuffer.toString()
@@ -74,15 +74,15 @@ function getAllAccounts(): any {
     return accountList
 }
 
-console.log(getAllAccounts())
+//console.log(getAllAccounts())
 
 function getAccountBalance(name: string, cpf: number): void {
 
     const accounts = getAllAccounts()
 
-    const accountBalance = accounts.filter((acc: any) => {
-        if(acc.name === name || acc.cpf === cpf) {
-            console.log(acc.balance)
+    accounts.filter((account: any) => {
+        if(account.name === name || account.cpf === cpf) {
+            console.log(account.balance)
         }
     })
 }
@@ -91,3 +91,24 @@ function getAccountBalance(name: string, cpf: number): void {
 // const cpf = Number(process.argv[3])
 
 // console.log(getAccountBalance(name, cpf))
+
+function addToBalance(name: string, cpf: number, amount: number): void {
+
+    const accounts = getAllAccounts()
+
+    for(let account of accounts) {
+        if(account.name === name || account.cpf === cpf) {
+            account.balance += amount
+        }
+    }
+
+    const updatedAccounts: string = JSON.stringify(accounts)
+
+    fs.writeFileSync('accounts.json', updatedAccounts)
+}
+
+// const name = process.argv[2]
+// const cpf = Number(process.argv[3])
+// const amount = Number(process.argv[4])
+
+// addToBalance(name, cpf, amount)
