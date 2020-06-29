@@ -5,21 +5,22 @@ moment.locale("pt-br")
 
 type transaction = {
     amount: number,
-    date: number,
+    date: moment.Moment,
     description: string
 }
 
 type account = {
     name: string,
     cpf: number,
-    birthDate: moment.Moment,
+    birthDate: string,
     balance: number,
     statement: transaction[]
 }
 
-function createAccount(name: string, cpf: number, birthDate: moment.Moment): void {
+function createAccount(name: string, cpf: number, birthDate: string): void {
 
-    const diff: number = moment().diff(birthDate, "years")
+    const birthDay = moment(birthDate, "DD/MM/YYYY")
+    const diff: number = moment().diff(birthDay, "years")
     
     if (diff > 18) {
 //substituir por const accounts = getAllAccounts()
@@ -99,6 +100,11 @@ function addToBalance(name: string, cpf: number, amount: number): void {
     for(let account of accounts) {
         if(account.name === name || account.cpf === cpf) {
             account.balance += amount
+            account.statement.push({
+                amount: amount,
+                date: moment().format("DD/MM/YYYY"),
+                description: "Depósito"
+            })
         }
     }
 
@@ -112,3 +118,75 @@ function addToBalance(name: string, cpf: number, amount: number): void {
 // const amount = Number(process.argv[4])
 
 // addToBalance(name, cpf, amount)
+
+function payBill(name:string, cpf: number, amount: number, description: string, date: string = moment().format("DD/MM/YYYY")): void {
+
+    const paymentDate = moment(date, "DD/MM/YYYY")
+    const currentDate = moment()
+    
+    if(paymentDate.diff(currentDate, "days") < 0) {
+        console.log("Data inválida")
+        return
+    }
+
+    const accounts = getAllAccounts()
+
+    for(let account of accounts) {
+        if(account.name === name || account.cpf === cpf) {
+
+            if(amount > account.balance) {
+                console.log("Saldo insuficiente")
+                return
+            }
+
+            account.balance -= amount
+            account.statement.push({
+                amount: -amount,
+                date: date,
+                description: description
+            })
+        }
+    }
+
+    const updatedAccounts: string = JSON.stringify(accounts)
+
+    fs.writeFileSync('accounts.json', updatedAccounts)
+}
+
+function transfer(name: string, cpf: number, recipientName: string, recipientCpf: number, amount: number) {
+
+    const accounts = getAllAccounts()
+
+    for(let account of accounts) {
+        if(account.name === name || account.cpf === cpf) {
+
+            if(amount > account.balance) {
+                console.log("Saldo insuficiente")
+                return
+            }
+
+            account.balance -= amount
+            account.statement.push({
+                amount: -amount,
+                date: moment(),
+                description: "Transferência"
+            })
+        }
+    }
+    
+    for(let account of accounts) {
+        if(account.name === recipientName || account.cpf === recipientCpf) {
+
+            account.balance += amount
+            account.statement.push({
+                amount: amount,
+                date: moment(),
+                description: "Transferência"
+            })
+        }
+    }
+
+    const updatedAccounts: string = JSON.stringify(accounts)
+
+    fs.writeFileSync('accounts.json', updatedAccounts)
+}
