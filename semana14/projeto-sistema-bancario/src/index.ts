@@ -17,43 +17,6 @@ type account = {
     statement: transaction[]
 }
 
-function createAccount(name: string, cpf: number, birthDate: string): void {
-
-    const birthDay = moment(birthDate, "DD/MM/YYYY")
-    const diff: number = moment().diff(birthDay, "years")
-    
-    if (diff > 18) {
-//substituir por const accounts = getAllAccounts()
-        const fileName: string = 'accounts.json'
-        const fileBuffer: Buffer = fs.readFileSync(fileName)
-        const fileText: string = fileBuffer.toString()
-        const accounts: account[] = JSON.parse(fileText)
-
-        const newAccount: account = {
-            name: name,
-            cpf: cpf,
-            birthDate: birthDate,
-            balance: 0,
-            statement: []
-        }
-
-        accounts.push(newAccount)
-
-        const updatedAccounts: string = JSON.stringify(accounts)
-
-        fs.writeFileSync(fileName, updatedAccounts)
-
-    } else {
-        console.log("Data de nascimento inválida")
-    }
-}
-
-// const name = process.argv[2]
-// const cpf = Number(process.argv[3])
-// const birthDate = moment(process.argv[4], "DD/MM/YYYY")
-
-// createAccount(name, cpf, birthDate)
-
 function getAllAccounts(): any {
     const fileName: string = 'accounts.json'
     const fileBuffer: Buffer = fs.readFileSync(fileName)
@@ -75,7 +38,33 @@ function getAllAccounts(): any {
     return accountList
 }
 
-//console.log(getAllAccounts())
+function createAccount(name: string, cpf: number, birthDate: string): void {
+
+    const birthDay = moment(birthDate, "DD/MM/YYYY")
+    const diff: number = moment().diff(birthDay, "years")
+    
+    if (diff > 18) {
+
+        const accounts: account[] = getAllAccounts()
+
+        const newAccount: account = {
+            name: name,
+            cpf: cpf,
+            birthDate: birthDate,
+            balance: 0,
+            statement: []
+        }
+
+        accounts.push(newAccount)
+
+        const updatedAccounts: string = JSON.stringify(accounts)
+
+        fs.writeFileSync('accounts.json', updatedAccounts)
+
+    } else {
+        console.log("Data de nascimento inválida")
+    }
+}
 
 function getAccountBalance(name: string, cpf: number): void {
 
@@ -87,11 +76,6 @@ function getAccountBalance(name: string, cpf: number): void {
         }
     })
 }
-
-// const name = process.argv[2]
-// const cpf = Number(process.argv[3])
-
-// console.log(getAccountBalance(name, cpf))
 
 function addToBalance(name: string, cpf: number, amount: number): void {
 
@@ -113,16 +97,10 @@ function addToBalance(name: string, cpf: number, amount: number): void {
     fs.writeFileSync('accounts.json', updatedAccounts)
 }
 
-// const name = process.argv[2]
-// const cpf = Number(process.argv[3])
-// const amount = Number(process.argv[4])
-
-// addToBalance(name, cpf, amount)
-
 function payBill(name:string, cpf: number, amount: number, description: string, date: string = moment().format("DD/MM/YYYY")): void {
 
     const paymentDate = moment(date, "DD/MM/YYYY")
-    const currentDate = moment()
+    const currentDate = moment().format("DD/MM/YYYY")
     
     if(paymentDate.diff(currentDate, "days") < 0) {
         console.log("Data inválida")
@@ -168,7 +146,7 @@ function transfer(name: string, cpf: number, recipientName: string, recipientCpf
             account.balance -= amount
             account.statement.push({
                 amount: -amount,
-                date: moment(),
+                date: moment().format("DD/MM/YYYY"),
                 description: "Transferência"
             })
         }
@@ -180,7 +158,7 @@ function transfer(name: string, cpf: number, recipientName: string, recipientCpf
             account.balance += amount
             account.statement.push({
                 amount: amount,
-                date: moment(),
+                date: moment().format("DD/MM/YYYY"),
                 description: "Transferência"
             })
         }
