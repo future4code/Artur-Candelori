@@ -5,7 +5,7 @@ moment.locale("pt-br")
 
 type transaction = {
     amount: number,
-    date: moment.Moment,
+    date: string,
     description: string
 }
 
@@ -43,32 +43,36 @@ function createAccount(name: string, cpf: number, birthDate: string): void {
     const birthDay = moment(birthDate, "DD/MM/YYYY")
     const diff: number = moment().diff(birthDay, "years")
     
-    if (diff > 18) {
-
-        const accounts: account[] = getAllAccounts()
-
-        const newAccount: account = {
-            name: name,
-            cpf: cpf,
-            birthDate: birthDate,
-            balance: 0,
-            statement: []
-        }
-
-        accounts.push(newAccount)
-
-        const updatedAccounts: string = JSON.stringify(accounts)
-
-        fs.writeFileSync('accounts.json', updatedAccounts)
-
-    } else {
+    if (diff < 18) {
         console.log("Data de nascimento inválida")
+        return
     }
+
+    const accounts: account[] = getAllAccounts()
+
+    for(let account of accounts) {
+        if(account.cpf === cpf) {
+            console.log("CPF já cadastrado")
+            return
+        }
+    }
+
+    const newAccount: account = {
+        name: name,
+        cpf: cpf,
+        birthDate: birthDate,
+        balance: 0,
+        statement: []
+    }
+
+    accounts.push(newAccount)
+    const updatedAccounts: string = JSON.stringify(accounts)
+    fs.writeFileSync('accounts.json', updatedAccounts)
 }
 
 function getAccountBalance(name: string, cpf: number): void {
 
-    const accounts = getAllAccounts()
+    const accounts: account[] = getAllAccounts()
 
     accounts.filter((account: any) => {
         if(account.name === name || account.cpf === cpf) {
@@ -79,7 +83,7 @@ function getAccountBalance(name: string, cpf: number): void {
 
 function addToBalance(name: string, cpf: number, amount: number): void {
 
-    const accounts = getAllAccounts()
+    const accounts: account[] = getAllAccounts()
 
     for(let account of accounts) {
         if(account.name === name || account.cpf === cpf) {
@@ -107,7 +111,7 @@ function payBill(name:string, cpf: number, amount: number, description: string, 
         return
     }
 
-    const accounts = getAllAccounts()
+    const accounts: account[] = getAllAccounts()
 
     for(let account of accounts) {
         if(account.name === name || account.cpf === cpf) {
@@ -133,7 +137,7 @@ function payBill(name:string, cpf: number, amount: number, description: string, 
 
 function transfer(name: string, cpf: number, recipientName: string, recipientCpf: number, amount: number) {
 
-    const accounts = getAllAccounts()
+    const accounts: account[] = getAllAccounts()
 
     for(let account of accounts) {
         if(account.name === name || account.cpf === cpf) {
