@@ -87,9 +87,130 @@ export class Industry extends Place {
   }
 }
 
-const newResidence: Place = new Residence(3, "123")
-console.log(newResidence.getCep())
-const newCommerce = new Commerce(2, "234")
-console.log(newCommerce.getCep())
-const newIndustry = new Industry(10, "345")
-console.log(newIndustry.getCep())
+// const newResidence: Place = new Residence(3, "123")
+// console.log(newResidence.getCep())
+// const newCommerce = new Commerce(2, "234")
+// console.log(newCommerce.getCep())
+// const newIndustry = new Industry(10, "345")
+// console.log(newIndustry.getCep())
+
+//Exercício 4
+class ResidentialClient extends Residence implements Client {
+  constructor(
+    public name: string,
+    public registrationNumber: number,
+    public consumedEnergy: number,
+    private cpf: string,
+    residentsQuantity: number,
+    cep: string,
+  ) {
+    super(residentsQuantity, cep)
+  }
+
+  public getCpf(): string {
+    return this.cpf
+  }
+
+  public calculateBill(): number {
+    return this.consumedEnergy * 0.75;
+  }
+}
+//a) getCpf, calculateBill, getResidentsQuantity e getCep. 
+//Porque a classe herda os métodos de Residence, Place e Client.
+
+//Exercício 5
+class CommercialClient extends Commerce implements Client {
+  constructor(
+    public name: string,
+    public registrationNumber: number,
+    public consumedEnergy: number,
+    private cnpj: string,
+    floorsQuantity: number,
+    cep: string
+  ) {
+    super(floorsQuantity, cep)
+  }
+
+  public getCnpj(): string {
+    return this.cnpj
+  }
+
+  public calculateBill(): number {
+    return this.consumedEnergy * 0.53
+  }
+}
+
+//a) Ambas são herdeiras da classe Place e implementam Client.
+//b) CommercialClient é filha da classe Commerce e ResidentialClient é filha da classe Residence.
+
+//Exercício 6
+class IndustrialClient extends Industry implements Client {
+  constructor(
+    public name: string,
+    public registrationNumber: number,
+    public consumedEnergy: number,
+    private industrialRegister: string,
+    machinesQuantity: number,
+    cep: string
+  ) {
+    super(machinesQuantity, cep)
+  }
+
+  public getIndustrialRegister(): string {
+    return this.industrialRegister
+  }
+
+  public calculateBill(): number {
+    return this.consumedEnergy * 0.45 + this.machinesQuantity * 100
+  }
+}
+
+//a) Industry. Porque queremos que ela tenha as propriedades e métodos da classe Industry.
+//b) Client. Mesmo motivo.
+//c) Porque não queremos mudar os valores de suas propriedades.
+
+//Exercícios 7 e 8
+class ClientManager {
+  private clients: Client[] = []
+
+  public registerClient(client: Client): void {
+    this.clients.push(client)
+  }
+
+  public getClientsQuantity(): number {
+    return this.clients.length
+  }
+
+  public calculateBillofClient(registrationNumber: number): number {
+    const foundClient = this.clients.find(client => {
+      return client.registrationNumber === registrationNumber
+    })
+
+    if(foundClient) {
+      return foundClient.calculateBill()
+    }
+
+    return 0
+  }
+
+  public calculateTotalIncome(): number {
+    let total: number = 0
+    this.clients.forEach(client => {
+      total += client.calculateBill()
+    })
+    return total
+  }
+
+  public deleteUser(registrationNumber: number): void {
+    let registrationIndex = undefined
+    for (let i = 0; i < this.clients.length; i++) {
+      if (this.clients[i].registrationNumber === registrationNumber) {
+        registrationIndex = i
+      }
+    }
+
+    if (registrationIndex !== undefined) {
+      this.clients.splice(registrationIndex, 1)
+    }
+  }
+}
