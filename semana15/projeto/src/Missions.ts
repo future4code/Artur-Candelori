@@ -1,5 +1,6 @@
 import moment from 'moment'
 import {Student, Teacher, TEACHER_SPECIALTY} from './Users'
+import { FileManager } from './FileManager'
 
 abstract class Mission {
     private name: string = "";
@@ -11,7 +12,12 @@ abstract class Mission {
         private teachers: Teacher[] = [],
         private students: Student[] = [],
         private currentModule: number | undefined = undefined
-    ) {}
+    ) {
+        const missionManager = new FileManager('missions.json')
+        const missions = missionManager.readFile()
+        missions.push(this)
+        missionManager.writeFile(missions)
+    }
   
     public getId(): string {
         return this.id;
@@ -38,19 +44,11 @@ abstract class Mission {
     }
   
     public addStudent(student: Student) {
-        this.students.push(student);
+        this.students.push(student)
     }
   
     public setName(name: string) {
         this.name = name;
-    }
-
-    public getStudentAge(id: string) {
-        this.students.filter(s => {
-            if(s.id === id) {
-                return s.getAge()
-            }
-        })
     }
 }
 
@@ -60,6 +58,8 @@ export class NightMission extends Mission {
     public setName(name: string) {
         if (name.indexOf("-na-night") !== -1) {
             super.setName(name);
+        } else {
+            super.setName(name + "-na-night")
         }
     }
 }

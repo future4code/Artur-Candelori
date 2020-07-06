@@ -1,7 +1,9 @@
 import * as fs from "fs";
 
 export class FileManager {
-  constructor(private filePath: string) {}
+  constructor(private filePath: string) {
+    this.filePath = filePath
+  }
 
   public setFilePath(path: string): void {
     this.filePath = path;
