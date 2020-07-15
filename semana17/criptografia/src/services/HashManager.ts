@@ -8,4 +8,13 @@ export default class HashManager {
         
         return cipherText
     }
+
+    public async compare(
+        text: string, 
+        cipherText: string
+    ): Promise<boolean> {
+        const result = await bcrypt.compare(text, cipherText)
+
+        return result
+    }
 }
