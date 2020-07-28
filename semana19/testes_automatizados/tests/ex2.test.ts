@@ -1,3 +1,5 @@
+import {performPurchase, User} from "../src/ex1"
+
 describe("Testando performPurchase", () => {
     
     test("Deve retornar objeto tipo User com saldo positivo", () => {
