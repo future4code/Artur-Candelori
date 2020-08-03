@@ -1,0 +1,10 @@
+Exercício 2
+
+1.
+
+3. ssh -i "julian2_aws.pem" ubuntu@ec2-54-166-228-187.compute-1.amazonaws.com
+
+4. git clone https://github.com/future4code/julian-4eddit6
+   cd julian-4eddit6
+   npm install
+   npm run start
