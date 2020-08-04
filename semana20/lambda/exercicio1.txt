@@ -1,0 +1,44 @@
+a.
+Tudo ok.
+
+b. 
+{
+  "statusCode": 400,
+  "body": "{\"message\":\"Missing input\"}"
+}
+
+c.
+{
+  "statusCode": 400,
+  "body": "{\"message\":\"Missing input\"}"
+}
+
+d.
+{
+  "statusCode": 400,
+  "body": "{\"message\":\"Missing email\"}"
+}
+
+e.
+{
+  "statusCode": 400,
+  "body": "{\"message\":\"Invalid password\"}"
+}
+
+f.
+{
+  "statusCode": 200,
+  "body": "{\"message\":\"User is correct\"}"
+}
+
+g.
+if (!user.email) {
+    return {
+        statusCode: 422, //aqui
+        body: JSON.stringify({ message: "Missing email" })
+    };
+}
+
+h.
+Um objeto com uma chave "user", cujo valor é um objeto com uma chave "info", e seu valor também é um objeto. 
+Esse objeto possui três chaves: "name", "email" e "password", sendo que as três são strings que não podem ser vazias e o password deve ter ao menos 6 caracteres.
