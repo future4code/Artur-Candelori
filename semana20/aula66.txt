@@ -1,0 +1,16 @@
+Exercício 1
+
+4. A minha dificuldade foi não saber o que estava fazendo, mesmo seguindo os passos. Dei uma olhada nas dúvidas da turma e consegui concluir o processo.
+
+Exercício 2
+
+1. Para ter um projeto começado na minha máquina na EC2, primeiramente subiria o projeto no github, para depois clona-lo na EC2. Em seguida faria o mesmo que faço no meu computador, instalando as dependencias e criando a build. 
+
+3. ssh -i "julian2_aws.pem" ubuntu@ec2-54-166-228-187.compute-1.amazonaws.com
+
+4. git clone https://github.com/future4code/julian-4eddit6
+   cd julian-4eddit6
+   npm install
+   npm run start
+
+7. A principal diferença foi que ao invés de criar um projeto novo com npx create-react-app, dessa vez usei um projeto já existente, clonando-o do github e instalando as dependências necessárias. Em seguida utilizei os mesmos comandos que havia utilizado antes.   
