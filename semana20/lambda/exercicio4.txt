@@ -1,0 +1,26 @@
+exports.handler = async event => {
+    
+    const checkEmail = (input) => {
+        if(!input.includes('@')) {
+            return {
+                isEmail: false,
+                reason: "Não possui '@'"
+            }
+        }
+        if(!input.includes('.')) {
+            return {
+                isEmail: false,
+                reason: "Não possui '.'"
+            }
+        }
+        return {
+            isEmail: true
+        }
+    }
+    
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(checkEmail(event.email))
+    }
+    return response
+};
