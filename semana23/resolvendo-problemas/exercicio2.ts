@@ -1,17 +1,17 @@
 function compressString(input: string): string {
   let newString: string = '';
-
+  // newString = input[0]
   let n = 1;
   for (let i = 1; i < input.length; i++) {
     if (input[i] === input[i - 1]) {
       n++;
     } else {
-      newString += input[i - 1] + n + input[i];
+      newString += input[i - 1] + n;
       n = 1;
     }
 
     if (i === input.length - 1) {
-      newString += n;
+      newString += input[i] + n;
     }
   }
 
