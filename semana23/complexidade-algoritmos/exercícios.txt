@@ -1,0 +1,19 @@
+1. O(n), n = input.length
+
+2. O(n), n = comparison.length
+
+3. O(1)
+
+4. O(n^2), n = listOfNumbers.length
+   Obs: o método indexOf percorre a lista toda a cada iteração do for,
+   o que equivale a um for dentro de outro, ambos com o mesmo número de iterações.
+
+5. 3, 1 e 2, 4
+
+6. O(b)
+
+7. O(1)
+
+8. n = array.length, appendToNew: O(n), copyArray: O(n^2)
+   Obs: em copyArray, a cada iteração do for a função appendNew itera sobre todo o array,
+   logo acontece o mesmo que no exercício 4.
